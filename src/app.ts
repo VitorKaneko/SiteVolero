@@ -12,4 +12,7 @@ app.get('/ping', (req, res) => {
   res.json({ message: 'Backend está funcionando!' });
 });
 
+// Rota de user
+app.use('/api', require('./routes/userRoutes'));
+
 export default app;
