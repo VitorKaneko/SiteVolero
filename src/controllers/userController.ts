@@ -8,7 +8,16 @@ export class UserController {
     try {
       // Recebe os dados do corpo da requisição (Frontend)
       const userData = req.body;
+
+      if(!userData || Object.keys(userData).length === 0) {
+        return res.status(400).json({ error: "Nenhum dado foi enviado no corpo da requisição." });
+      }
       
+      if(!userData.dataNasc){
+        res.status(400).json({ error: "O campo 'dataNasc' é obrigatório." });
+        return;
+      }
+
       // Chama o serviço
       const newUser = await userService.createUser({
         ...userData,

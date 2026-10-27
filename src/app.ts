@@ -1,5 +1,7 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
 import cors from 'cors';
+import userRoutes from './routes/userRoutes';
+import authRoutes from './routes/authRoutes';
 
 const app = express();
 
@@ -13,6 +15,7 @@ app.get('/ping', (req, res) => {
 });
 
 // Rota de user
-app.use('/api', require('./routes/userRoutes'));
+app.use('/api', userRoutes);
+app.use('/api', authRoutes);
 
 export default app;
